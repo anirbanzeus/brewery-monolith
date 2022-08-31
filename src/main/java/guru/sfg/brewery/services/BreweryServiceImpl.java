@@ -18,11 +18,15 @@ package guru.sfg.brewery.services;
 
 import guru.sfg.brewery.domain.Brewery;
 import guru.sfg.brewery.repositories.BreweryRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@Slf4j
+@RequiredArgsConstructor
 public class BreweryServiceImpl implements BreweryService{
 
     private BreweryRepository breweryRepository;

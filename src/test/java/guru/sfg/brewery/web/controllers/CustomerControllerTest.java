@@ -9,6 +9,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -58,7 +59,7 @@ class CustomerControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("customers/findCustomers"))
                 .andExpect(model().attributeExists("customer"));
-        verifyZeroInteractions(customerRepository);
+        Mockito.verify(customerRepository,never()).findAll();
     }
 //ToDO: Fix stubbing error
     @Test
@@ -87,7 +88,7 @@ class CustomerControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("customers/createCustomer"))
                 .andExpect(model().attributeExists("customer"));
-        verifyZeroInteractions(customerRepository);
+        Mockito.verify(customerRepository,never()).findAll();
     }
 
     @Test
@@ -107,7 +108,7 @@ class CustomerControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("customers/createOrUpdateCustomer"))
                 .andExpect(model().attributeExists("customer"));
-        verifyZeroInteractions(customerRepository);
+        Mockito.verify(customerRepository,never()).findAll();
     }
 
     @Test

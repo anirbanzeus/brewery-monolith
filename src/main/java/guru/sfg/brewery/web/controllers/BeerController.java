@@ -41,7 +41,7 @@ public class BeerController {
     }
 
     @GetMapping
-    public String processFindFormReturnMany(Beer beer, BindingResult result, Model model) {
+    public String processFindFormReturnMany(@Valid Beer beer, BindingResult result, Model model) {
         // find beers by name
         //ToDO: Add Service
         //ToDO: Get paging data from view
@@ -101,7 +101,7 @@ public class BeerController {
     }
 
     @PostMapping("/{beerId}/edit")
-    public String processUpdationForm(@Valid Beer beer, BindingResult result) {
+    public String processUpdationForm(Beer beer, BindingResult result) {
         if (result.hasErrors()) {
             return "beers/createOrUpdateBeer";
         } else {
@@ -114,7 +114,7 @@ public class BeerController {
     private PageRequest createPageRequest(int page, int size, Sort.Direction sortDirection, String propertyName) {
         return PageRequest.of(page,
                 size,
-                new Sort(sortDirection, propertyName));
+                Sort.by(sortDirection, propertyName));
     }
 }
 
